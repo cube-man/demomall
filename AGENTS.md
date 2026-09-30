@@ -14,3 +14,4 @@
 3. 构建命令：`mvn clean package`（系统默认即 JDK 8，无需切换）；沙箱内仓库不通时追加 `-s G:\aiproject\maven-settings.xml`。
 4. 交付前过《标准开发流程》§5.1 自检清单；测试全绿才算完成。
 5. 文档同步：接口/数据结构变化时，同一次改动内更新 README 与架构文档。
+6. Windows 下结束后台 java 进程用 `taskkill /PID <pid> /F`（git bash 的 kill 不可靠）；运行验证后确认端口释放，再继续构建。
