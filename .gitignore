@@ -1,0 +1,20 @@
+target/
+*.class
+*.log
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.settings/
+.classpath
+.project
+
+# OS
+.DS_Store
+Thumbs.db
+
+# 本地工具状态（不入库）
+.mimosa/
+.zcode/
+.envcheck/
