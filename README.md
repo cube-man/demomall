@@ -33,6 +33,10 @@ curl http://localhost:8080/api/products/1
 mvn test
 ```
 
+## CI
+
+推送到 GitHub 后自动构建 + 测试（配置见 [.github/workflows/ci.yml](.github/workflows/ci.yml)：Temurin 8 + `mvn -B verify`）。
+
 ## 结构
 
 单模块三层单体：`api → service → infra`，禁止反向依赖，详见 [docs/启动链/03-架构说明.md](docs/启动链/03-架构说明.md)。
