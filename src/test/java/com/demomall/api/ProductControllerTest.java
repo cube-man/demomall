@@ -41,4 +41,26 @@ class ProductControllerTest {
         mockMvc.perform(get("/api/products/999"))
                 .andExpect(status().isNotFound());
     }
+
+    @Test
+    void search_byName_returnsMatches() throws Exception {
+        mockMvc.perform(get("/api/products/search").param("name", "键盘"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(1)))
+                .andExpect(jsonPath("$[0].name", is("机械键盘")));
+    }
+
+    @Test
+    void search_withoutName_returnsAll() throws Exception {
+        mockMvc.perform(get("/api/products/search"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(3)));
+    }
+
+    @Test
+    void search_unknownName_returnsEmptyArray() throws Exception {
+        mockMvc.perform(get("/api/products/search").param("name", "不存在的东西"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(0)));
+    }
 }
