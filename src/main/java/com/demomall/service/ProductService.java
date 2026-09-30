@@ -31,6 +31,24 @@ public class ProductService {
         return products.get(id);
     }
 
+    /**
+     * 按名称搜索：关键字为空返回全部；匹配不区分大小写（对中文无影响）。
+     * 注意：Java 8 没有 String.isBlank()，判空用 trim().isEmpty()。
+     */
+    public List<Product> searchByName(String keyword) {
+        if (keyword == null || keyword.trim().isEmpty()) {
+            return list();
+        }
+        String normalized = keyword.trim().toLowerCase();
+        List<Product> matched = new ArrayList<>();
+        for (Product product : products.values()) {
+            if (product.getName().toLowerCase().contains(normalized)) {
+                matched.add(product);
+            }
+        }
+        return Collections.unmodifiableList(matched);
+    }
+
     private void put(Product product) {
         products.put(product.getId(), product);
     }

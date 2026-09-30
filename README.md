@@ -21,6 +21,7 @@ mvn package && java -jar target/demomall-0.1.0-SNAPSHOT.jar
 |---|---|---|
 | GET | `/api/products` | 商品列表 |
 | GET | `/api/products/{id}` | 商品详情（不存在返回 404） |
+| GET | `/api/products/search?name=<关键字>` | 按名称搜索（空参数返回全部；匹配不区分大小写） |
 
 ```bash
 curl http://localhost:8080/api/products
